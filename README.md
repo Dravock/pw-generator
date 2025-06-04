@@ -49,7 +49,7 @@ Dieses Projekt verwendet eine **virtuelle Python-Umgebung** (`.venv`), um Abhän
 
 Um das Projekt zu starten Navigiere in das Root Verzeichniss und führe folgenden Befehl aus
 
-bash console:
+**bash console:**
 
     python main.py
 
@@ -59,6 +59,6 @@ bash console:
 
 Um die Virtuelle Umgebung zu deaktivieren Navigiere in **./.venv__ dort führt man die deactivate dateiaus
 
-bash console:
+**bash console:**
 
     deactivate
