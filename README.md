@@ -47,7 +47,7 @@ Dieses Projekt verwendet eine **virtuelle Python-Umgebung** (`.venv`), um Abhän
 
 ## ❌ Deaktivieren der Umgebung
 
-Um die Virtuelle Umgebung zu deaktivieren Navigiere in ./.venv dort führt man die deactivate dateiaus
+Um die Virtuelle Umgebung zu deaktivieren Navigiere in **./.venv** dort führt man die deactivate dateiaus
 
 ### bash console
 
