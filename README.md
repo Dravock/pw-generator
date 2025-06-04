@@ -15,11 +15,11 @@ Dieses Projekt verwendet eine **virtuelle Python-Umgebung** (`.venv`), um Abhän
 
 ### 1. Repository klonen (falls du Git verwendest)
 
-git clone <https://github.com/dein-benutzername/dein-repo.git>
+    git clone <https://github.com/dein-benutzername/dein-repo.git>
 
 ### 2. Virtuelle Umgebung anlegen
 
-python -m venv .venv
+    python -m venv .venv
 
 ### 3. Umgebung aktivieren
 
@@ -34,3 +34,9 @@ python -m venv .venv
 #### ▶️ macOS / Linux
 
     source .venv/bin/activate
+
+### 4. Abhängigkeiten installieren
+
+#### Falls ein requirements.txt vorhanden ist
+
+    pip install -r requirements.txt
