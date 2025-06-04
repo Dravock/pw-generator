@@ -1,125 +1,129 @@
-#Importieren der Module
-from tkinter import *
-from tkinter import ttk
 import tkinter as tk
+from tkinter import ttk
 import random
 import pyperclip as pc
 
-#Fenster einstellungen
-generator =tk.Tk()
-generator.geometry("400x350")
-generator.resizable(False,False)
-generator.title("Password Generator")
-tabControl=ttk.Notebook(generator)
+# -------------- Hilfsfunktionen für Passwörter --------------
 
-pwgen=ttk.Frame(tabControl)
-pwlist=ttk.Frame(tabControl)
+def generate_password(length, use_upper=True, use_lower=True, use_digits=True, use_punct=True):
+    """
+    Erstellt ein zufälliges Passwort mit gewünschter Länge und Zeichentypen.
+    """
+    chars = ''
+    if use_upper:
+        chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    if use_lower:
+        chars += 'abcdefghijklmnopqrstuvwxyz'
+    if use_digits:
+        chars += '0123456789'
+    if use_punct:
+        chars += '!\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+    if not chars:
+        return ''
+    # Mindestens je ein Zeichen pro Kategorie
+    password = []
+    if use_upper:
+        password.append(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ'))
+    if use_lower:
+        password.append(random.choice('abcdefghijklmnopqrstuvwxyz'))
+    if use_digits:
+        password.append(random.choice('0123456789'))
+    if use_punct:
+        password.append(random.choice('!\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'))
+    # Rest auffüllen
+    while len(password) < length:
+        password.append(random.choice(chars))
+    random.shuffle(password)
+    return ''.join(password)
 
-tabControl.add(pwgen,text='PW Generator')
-tabControl.add(pwlist,text='PW List')
-tabControl.pack(expand=1,fill="both")
+# -------------- GUI Funktionen --------------
 
-#globale Variabeln Speichern
-auswahl = 1
-password =""
+def update_password_display():
+    """
+    Zeigt das generierte Passwort im Label an.
+    """
+    strength = strength_var.get()
+    if strength == 1:
+        pw = generate_password(8, True, True, True, True)      # Schwach: 8 Zeichen
+    elif strength == 2:
+        pw = generate_password(12, True, True, True, True)     # Normal: 12 Zeichen
+    else:
+        pw = generate_password(16, True, True, True, True)     # Stark: 16 Zeichen
+    password_var.set(pw)
 
-#--------------------------------------------Passwort-Generieren--------------------------------------------------------#
-#Funktion Passwort Generieren
-#Passwort Variablen erstellen
-upperletter1=chr(random.randint(65,90))
-upperletter2=chr(random.randint(65,90))    
-upperletter3=chr(random.randint(65,90))
-upperletter4=chr(random.randint(65,90))
+def copy_password(event=None):
+    """
+    Kopiert das aktuell angezeigte Passwort in die Zwischenablage.
+    """
+    pc.copy(password_var.get())
 
-lowerletter1 = chr(random.randint(97,122))
-lowerletter2 = chr(random.randint(97,122))
-lowerletter3 = chr(random.randint(97,122))
-lowerletter4 = chr(random.randint(97,122))
+# -------------- Hauptfenster und Tabs --------------
 
-numletter1 = chr(random.randint(48,57))
-numletter2 = chr(random.randint(48,57))
-numletter3 = chr(random.randint(48,57))
-numletter4 = chr(random.randint(48,57))
+root = tk.Tk()
+root.geometry("400x350")
+root.resizable(False, False)
+root.title("Password Generator")
 
-punctuaionletter1 = chr(random.randint(33,47))
-punctuaionletter2 = chr(random.randint(33,47))
-punctuaionletter3 = chr(random.randint(33,47))
-punctuaionletter4 = chr(random.randint(33,47))
+tabControl = ttk.Notebook(root)
+pwgen_frame = ttk.Frame(tabControl)
+pwlist_frame = ttk.Frame(tabControl)
+tabControl.add(pwgen_frame, text='PW Generator')
+tabControl.add(pwlist_frame, text='PW List')
+tabControl.pack(expand=1, fill="both")
 
-#Generierung des Passwords
-def shuffel (string):
-    templist = list(string)
-    random.shuffle(templist)
-    return''.join(templist)
-#Berechnung des Passwords
-def schwach ():
-    global auswahl, password
-    auswahl = 1
-    password = upperletter1+upperletter2+lowerletter1+lowerletter2+numletter1+numletter2+punctuaionletter1+punctuaionletter2
+# -------------- Passwort Generator Tab --------------
 
-def normal ():
-    global auswahl,password
-    password = upperletter1+upperletter2+upperletter3+lowerletter1+lowerletter2+lowerletter3+numletter1+numletter2+numletter3+punctuaionletter1+punctuaionletter2+punctuaionletter3
+# Begrüßung
+tk.Label(pwgen_frame, text="Willkommen im Password Generator :)", font=('times', 15, 'bold', 'italic')).place(x=35, y=10)
 
-def stark ():
-    global auswahl,password
-    password = upperletter1+upperletter2+upperletter3+upperletter4+lowerletter1+lowerletter2+lowerletter3+lowerletter4+numletter1+numletter2+numletter3+numletter4+punctuaionletter1+punctuaionletter2+punctuaionletter3+punctuaionletter4
+# Sicherheitsstufe-Label
+tk.Label(pwgen_frame, text="Wählen Sie eine Sicherheitsstufe!", padx=20, font=('times', 12, 'bold', 'italic')).place(x=70, y=72)
 
-#Ausführung des berechnen Button
-def  berechnen():
-    global auswahl,password
-    if auswahl == 1 :
-        password=str(shuffel(password))
-        password1.config(text=password)
+# Radiobuttons für Sicherheitsstufe
+strength_var = tk.IntVar(value=1)
+tk.Radiobutton(pwgen_frame, text="Schwach", value=1, variable=strength_var).place(x=70, y=115)
+tk.Radiobutton(pwgen_frame, text="Normal", value=2, variable=strength_var).place(x=175, y=115)
+tk.Radiobutton(pwgen_frame, text="Stark", value=3, variable=strength_var).place(x=270, y=115)
 
-    elif auswahl == 2 :
-        password = upperletter1+upperletter2+upperletter3+lowerletter1+lowerletter2+lowerletter3+numletter1+numletter2+numletter3+punctuaionletter1+punctuaionletter2+punctuaionletter3
-        password=str(shuffel(password))
-        password1.config(text=password)
-        
-    elif auswahl == 3 :
-        password = upperletter1+upperletter2+upperletter3+upperletter4+lowerletter1+lowerletter2+lowerletter3+lowerletter4+numletter1+numletter2+numletter3+numletter4+punctuaionletter1+punctuaionletter2+punctuaionletter3+punctuaionletter4
-        password=str(shuffel(password))
-        password1.config(text=password) 
+# Passwort-Anzeige
+password_var = tk.StringVar(value="")
+password_label = tk.Label(pwgen_frame, bg="lightgray", justify="center", textvariable=password_var, font=('times', 20))
+password_label.place(x=75, y=200, width=250)
+password_label.bind("<Button-3>", copy_password)  # Rechtsklick kopiert Passwort
 
-#Erstellung und Funktion des Copy Button
-def copyit(*args):
-    pc.copy(password1.cget("text"))
+# Copy-Button
+copy_btn = tk.Button(pwgen_frame, bg="green", text="Copy", command=copy_password, cursor='hand2')
+copy_btn.place(x=268, y=160, width=50, height=30)
 
-#Password ausgabe & Bind des Copybutton
-password1 =Label(pwgen,bg="lightgray",justify=CENTER, text="",font=('times',20))
-password1.place(x=75,y=200 ,width=250)
-password1.bind("<Button-3>", copyit)
+# Passwort generieren Button
+generate_btn = tk.Button(
+    pwgen_frame,
+    bg='#FBD975',
+    text="Password Generieren",
+    cursor='hand2',
+    command=update_password_display,
+    padx=25
+)
+generate_btn.place(x=85, y=160, width=180, height=30)
 
-copybutton=Button(pwgen,bg="green",text="Copy", command=copyit ,cursor='hand2' )
-copybutton.place(x=268 ,y= 160 , width= 50 ,height=30)
+# -------------- Passwort Liste Tab --------------
 
-#Überschrift im Fenster
-Label(pwgen, text="Willkommen im Password Generator :) ",font=('times',15,'bold','italic')).place(x=35,y=10)
+tk.Label(
+    pwlist_frame,
+    text="Passwort Liste",
+    justify="center",
+    padx=20,
+    font=('times', 15, 'bold', 'italic')
+).pack(pady=20)
 
-#text für die Raidobutton
-Label(pwgen, text="Wählen sie eine Sicherheitsstufe!",padx=20,font=('times',12,'bold','italic')).place(x=70, y=72)
+# Hier könntest du z.B. ein Textfeld einfügen, das Passwörter speichert
 
-#Setzen der default einstellung der Radiobutton
-default = tk.IntVar() 
-default.set(1)
+# -------------- Footer --------------
 
-#Erstellung der Radiobutton
-r1 = Radiobutton(pwgen, text="Schwach", value=1, variable=default, command=schwach).place(x=70,y=115)
-r2 = Radiobutton(pwgen, text="Normal", value=2, variable=default, command=normal).place(x=175,y=115)
-r3 = Radiobutton(pwgen, text="Stark", value=3, variable=default, command=stark).place(x=270,y=115)
+tk.Label(root, text="© Copyright by DravenSoft since 2021", font=("Arial", 9)).pack(side="bottom", pady=2)
 
-#Berechnen-Button erstellen
-passwordgenerieren = Button(pwgen,bg='#FBD975',text="Password Generieren" ,cursor='hand2',command=berechnen,justify=CENTER ,padx=25)
-passwordgenerieren.place(x=85 ,y=160,width=180 ,height=30)
+# -------------- Mainloop --------------
 
-#---------------------------------Passwort Liste-------------------------------------------------------------------------#
-
-Label(pwlist, text="""Passwort Liste""",justify=CENTER,padx=20,font=('times',15,'bold','italic')).pack()
-
-#---------------------------------Footer---------------------------------------------------------------------------------#
-#Fußzeile für Copyright
-crlabel=Label(generator ,text="© Copyright by DravenSoft since 2021",font=1).pack(side="bottom")
-
-#Mainloop  für das Fenster
-generator.mainloop()
+root.mainloop()
+# Ende des Programms
+# Hinweis: Dieses Programm ist ein einfaches Beispiel und sollte nicht für echte Sicherheitsanwendungen verwendet werden.
