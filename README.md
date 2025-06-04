@@ -43,6 +43,12 @@ Dieses Projekt verwendet eine **virtuelle Python-Umgebung** (`.venv`), um Abhän
 
     pip install -r requirements.txt
 
+#### 💡 Hinweis
+
+Wenn du später noch weitere externe Pakete installierst (z. B. ```requests```, ```pandas```, etc.), kannst du sie mit folgendem Befehl automatisch zur Datei hinzufügen:
+
+    pip freeze > requirements.txt
+
 ---
 
 ## 🧪 Projekt starten (Beispiel)
@@ -57,7 +63,7 @@ Um das Projekt zu starten Navigiere in das Root Verzeichniss und führe folgende
 
 ## ❌ Deaktivieren der Umgebung
 
-Um die Virtuelle Umgebung zu deaktivieren Navigiere in **./.venv** dort führt man die deactivate dateiaus
+Um die Virtuelle Umgebung zu deaktivieren Navigiere in **./.venv** dort führt man die deactivate datei aus
 
 **bash console:**
 
