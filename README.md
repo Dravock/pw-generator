@@ -51,9 +51,9 @@ Wenn du später noch weitere externe Pakete installierst (z. B. ```requests```
 
 ---
 
-## 🧪 Projekt starten (Beispiel)
+## 🧪 Projekt starten
 
-Um das Projekt zu starten Navigiere in das Root Verzeichniss und führe folgenden Befehl aus
+Um das Projekt zu starten Navigiere in das ```Root``` Verzeichniss und führe folgenden Befehl aus
 
 **bash console:**
 
@@ -63,7 +63,7 @@ Um das Projekt zu starten Navigiere in das Root Verzeichniss und führe folgende
 
 ## ❌ Deaktivieren der Umgebung
 
-Um die Virtuelle Umgebung zu deaktivieren Navigiere in **./.venv** dort führt man die deactivate datei aus
+Um die Virtuelle Umgebung zu deaktivieren Navigiere in ```./.venv``` dort führt man die deactivate datei aus
 
 **bash console:**
 
