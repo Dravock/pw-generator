@@ -1,13 +1,36 @@
-# pw-generator
+# 📦 Python-Projekt mit virtueller Umgebung (.venv)
 
-Die ist ein Python Programm mit der Tkinter GUI , welches ein Passwort generiert . 
+Dieses Projekt verwendet eine **virtuelle Python-Umgebung** (`.venv`), um Abhängigkeiten lokal und isoliert zu verwalten.
 
-Zur einstellung der Sicherheitsstufe gibt es 3 Radio Buttons:
+---
 
-Schwach- 8 Zeichen bestehnd aus Groß/Kleinschreibweise , Zahlen und Sonderzeichen 
+## 🔧 Voraussetzungen
 
-Mittel - 12 Zeichen bestehnd aus Groß/Kleinschreibweise , Zahlen und Sonderzeichen
+- [Python 3.7+](https://www.python.org/downloads/)
+- Optional: [Visual Studio Code](https://code.visualstudio.com/)
 
-Stark  - 16 Zeichen bestehnd aus Groß/Kleinschreibweise , Zahlen und Sonderzeichen
+---
 
-Es ist eine copy-password funktion implementiert , einfach auf copy klicken und an der gewünschten stelle einfügen
+## 🚀 Installation
+
+### 1. Repository klonen (falls du Git verwendest)
+
+git clone <https://github.com/dein-benutzername/dein-repo.git>
+
+### 2. Virtuelle Umgebung anlegen
+
+python -m venv .venv
+
+### 3. Umgebung aktivieren
+
+#### ▶️ Auf Windows (cmd)
+
+.venv\Scripts\activate
+
+#### ▶️ Windows (PowerShell)
+
+.venv\Scripts\Activate.ps1
+
+#### ▶️ macOS / Linux
+
+source .venv/bin/activate
