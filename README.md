@@ -1,4 +1,6 @@
-# 📦 Python-Projekt mit virtueller Umgebung (.venv)
+# Passwort Generator mit User Interface
+
+## 📦 Python-Projekt mit virtueller Umgebung (.venv)
 
 Dieses Projekt verwendet eine **virtuelle Python-Umgebung** (`.venv`), um Abhängigkeiten lokal und isoliert zu verwalten.
 
@@ -7,7 +9,7 @@ Dieses Projekt verwendet eine **virtuelle Python-Umgebung** (`.venv`), um Abhän
 ## 🔧 Voraussetzungen
 
 - [Python 3.7+](https://www.python.org/downloads/)
-- Optional: [Visual Studio Code](https://code.visualstudio.com/)
+- Optional: [Visual Studio Code](https://code.visualstudiocode.com/)
 
 ---
 
@@ -15,7 +17,7 @@ Dieses Projekt verwendet eine **virtuelle Python-Umgebung** (`.venv`), um Abhän
 
 ### 1. Repository klonen (falls du Git verwendest)
 
-    git clone <https://github.com/dein-benutzername/dein-repo.git>
+    git clone <https://github.com/Dravock/pw-generator.git>
 
 ### 2. Virtuelle Umgebung anlegen
 
@@ -40,3 +42,5 @@ Dieses Projekt verwendet eine **virtuelle Python-Umgebung** (`.venv`), um Abhän
 #### Falls ein requirements.txt vorhanden ist
 
     pip install -r requirements.txt
+
+---
