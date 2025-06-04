@@ -10,6 +10,14 @@ Dieses Projekt verwendet eine **virtuelle Python-Umgebung** (`.venv`), um Abhän
 
 - [Python 3.7+](https://www.python.org/downloads/)
 - Optional: [Visual Studio Code](https://code.visualstudiocode.com/)
+- Required Packages
+
+### 📄 requirements.txt
+
+```txt
+pyperclip
+requests
+pandas
 
 ---
 
