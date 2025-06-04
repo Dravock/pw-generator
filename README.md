@@ -17,7 +17,7 @@ Dieses Projekt verwendet eine **virtuelle Python-Umgebung** (`.venv`), um Abhän
 ```txt
 pyperclip
 requests
-pandas
+pandas```
 
 ---
 
