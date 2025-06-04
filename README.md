@@ -57,7 +57,7 @@ Um das Projekt zu starten Navigiere in das Root Verzeichniss und führe folgende
 
 ## ❌ Deaktivieren der Umgebung
 
-Um die Virtuelle Umgebung zu deaktivieren Navigiere in **./.venv__ dort führt man die deactivate dateiaus
+Um die Virtuelle Umgebung zu deaktivieren Navigiere in **./.venv** dort führt man die deactivate dateiaus
 
 **bash console:**
 
